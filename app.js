@@ -15,14 +15,20 @@
 
     // Quand un client se connecte, on le note dans la console
     io.sockets.on('connection', function (socket) {
+
         console.log('Un client est connecté !');
         socket.emit('connection', 'Vous êtes bien connecté !')
+
+        io.of('/raspi').clients(function(error, clients){
+          if (error) throw error;
+          console.log(clients); // => [PZDoMHjiu8PYfRiKAAAF, Anw2LatarvGVVXEIAAAD]
+        });
 
         // Quand le serveur reçoit un signal de type "movement" du client
         socket.on('movement', function (message) {
         console.log('Server movement message :' + message);
 
-            socket.emit('movement', message);
+            socket.broadcast('movement', message);
 //
 //            switch(message) {
 //                case "forward":
