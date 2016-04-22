@@ -22,20 +22,22 @@
         socket.on('movement', function (message) {
         console.log('Server movement message :' + message);
 
-            switch(message) {
-                case "forward":
-                //forward();
-                    break;
-                case "backward":
-                //backward();
-                    break;
-                case "left":
-                //left();
-                    break;
-                case "right":
-                //right();
-                    break;
-            }
+            socket.emit('movement', message);
+//
+//            switch(message) {
+//                case "forward":
+//                forward();
+//                    break;
+//                case "backward":
+//                backward();
+//                    break;
+//                case "left":
+//                left();
+//                    break;
+//                case "right":
+//                //right();
+//                    break;
+//            }
         });
     });
 
