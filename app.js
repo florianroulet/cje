@@ -16,7 +16,7 @@
 
     var nsp = io.of('/raspi');
     nsp.on('connection', function(socket){
-      console.log('raspberry connected'):
+      console.log('raspberry connected');
     });
 
 
