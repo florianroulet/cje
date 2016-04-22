@@ -32,26 +32,6 @@
             console.log('Server movement message :' + message);
 
             nsp.emit('movement', message);
-//            io.of('/raspi').clients(function(error, clients){
-//              if (error) throw error;
-//              console.log(clients); // => [PZDoMHjiu8PYfRiKAAAF, Anw2LatarvGVVXEIAAAD]
-//            });
-
-
-//            switch(message) {
-//                case "forward":
-//                forward();
-//                    break;
-//                case "backward":
-//                backward();
-//                    break;
-//                case "left":
-//                left();
-//                    break;
-//                case "right":
-//                //right();
-//                    break;
-//            }
         });
     });
 
