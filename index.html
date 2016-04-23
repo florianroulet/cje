@@ -25,7 +25,7 @@
             </div>
 
             <div>
-                <input type="button" value="backward" id="backward"  class="ui-icon-arrow-d ui-btn ui-btn-icon-bottom"/>
+                <input type="button" value="backward" id="backward" data-icon="arrow-d" class="ui-btn ui-btn-icon-bottom"/>
             </div>
         </div>
         <div data-role="footer">
@@ -43,6 +43,12 @@
             });
 
             socket.on('status', function(messageObject) {
+                if (messageObject.raspberryStatus) {
+                    $('input[type="button"]').removeAttr("disabled");
+                } else {
+                    $('input[type="button"]').attr("disabled", "disabled");
+                }
+
                 $("#rpiStatus").html(messageObject.raspberryStatus ? "ok" : "ko");
             });
 
