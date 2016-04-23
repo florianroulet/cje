@@ -65,15 +65,15 @@
             });
 
             var forwardInterval;
-            $('input.robotCommand').bind('vmousedown', function() {
-                var movement = $(this).val();
-                forwardInterval = setInterval(function() {
-                    socket.emit('movement', movement);
-                }, 125);
-            });
-            $('input.robotCommand').bind('vmouseup', function() {
-                clearInterval(forwardInterval);
-            });
+            $('input.robotCommand')
+                .bind('vmousedown', function() {
+                    var movement = $(this).val();
+                    forwardInterval = setInterval(function() {
+                        socket.emit('movement', movement);
+                    }, 125);
+                }).bind('vmouseup', function() {
+                    clearInterval(forwardInterval);
+                });
         </script>
     </body>
-</html>1
+</html>
