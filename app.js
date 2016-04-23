@@ -13,10 +13,11 @@
       res.sendFile(__dirname + '/index.html');
     });
 
-
+    var raspberryConnected = false;
     var nsp = io.of('/raspi');
     nsp.on('connection', function(socket){
       console.log('raspberry connected');
+        raspberryConnected = true;
     });
 
 
@@ -24,7 +25,10 @@
     io.sockets.on('connection', function (socket) {
 
         console.log('Un client est connecté !');
-        socket.emit('connection', 'Vous êtes bien connecté !')
+        socket.emit('connection', {
+                                    message: 'Vous êtes bien connecté !',
+                                    raspberryStatus: raspberryConnected
+                                  })
 
 
         // Quand le serveur reçoit un signal de type "movement" du client
