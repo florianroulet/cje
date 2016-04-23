@@ -5,6 +5,7 @@
     fs = require('fs'),
     app = require('express')();
 
+    const PORT = 9090;
     // Chargement du fichier index.html affiché au client
     var server = http.Server(app);
     var io = require('socket.io').listen(server);
@@ -50,8 +51,8 @@
         });
     });
 
-    server.listen(9090, function () {
-        console.log('Server listenning on port 8080');
+    server.listen(PORT, function () {
+        console.log('Server listenning on port ' + PORT);
     });
 }());
 
