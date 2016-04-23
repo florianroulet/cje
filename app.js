@@ -20,8 +20,20 @@
     var client = io.of('/client');
 
     nsp.on('connection', function(socket){
-      console.log('raspberry connected');
+        console.log('raspberry connected');
         raspberryConnected = true;
+        client.emit('status', { raspberryStatus: raspberryConnected});
+
+        socket.on('disconnect', function() {
+            console.log('raspberry disconnected');
+            raspberryConnected = false;
+            client.emit('status', { raspberryStatus: raspberryConnected});
+        });
+    });
+
+    nsp.on('disconnect', function() {
+        console.log('raspberry disconnected');
+        raspberryConnected = false;
         client.emit('status', { raspberryStatus: raspberryConnected});
     });
 
