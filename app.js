@@ -17,16 +17,17 @@
     var clientSocket;
 
     var nsp = io.of('/raspi');
+    var client = io.of('/client');
+
     nsp.on('connection', function(socket){
       console.log('raspberry connected');
         raspberryConnected = true;
-        if (clientSocket) clientSocket.emit('status', { raspberryStatus: raspberryConnected});
+        client.emit('status', { raspberryStatus: raspberryConnected});
     });
 
-
     // Quand un client se connecte, on le note dans la console
-    io.sockets.on('connection', function (socket) {
-        clientSocket = socket;
+    client.on('connection', function (socket) {
+
         console.log('Un client est connecté !');
         socket.emit('connection', {
                                     message: 'Vous êtes bien connecté !',
