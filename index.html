@@ -6,15 +6,20 @@
     </head>
 
     <body>
-        <h1>Communication avec socket.io !</h1>
+        <h1>Welcome !</h1>
 
-        <p><input type="button" value="forward" id="forward" /></p>
+        <div style="width:100%">
+            <input type="button" value="forward" id="forward" />
+        </div>
 
-        <p><input type="button" value="backward" id="backward" /></p>
+        <div>
+            <input type="button" value="backward" id="backward" />
+            <input type="button" value="left" id="left" />
+        </div>
 
-        <p><input type="button" value="left" id="left" /></p>
-
-        <p><input type="button" value="right" id="right" /></p>
+        <div>
+            <input type="button" value="right" id="right" />
+        </div>
 
         <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
         <script src="/socket.io/socket.io.js"></script>
