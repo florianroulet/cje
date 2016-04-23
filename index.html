@@ -40,8 +40,11 @@
             var socket = io.connect(location.host);
             socket.on('connection', function(messageObject) {
                 alert('Le serveur a un message pour vous : ' + messageObject.message);
+            });
+
+            socket.on('status', function(messageObject) {
                 $("#rpiStatus").html(messageObject.raspberryStatus ? "ok" : "ko");
-            })
+            });
 
             $('#forward').click(function () {
                 socket.emit('movement', 'forward');

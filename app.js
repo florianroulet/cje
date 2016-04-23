@@ -14,27 +14,31 @@
     });
 
     var raspberryConnected = false;
+    var clientSocket;
+
     var nsp = io.of('/raspi');
     nsp.on('connection', function(socket){
       console.log('raspberry connected');
         raspberryConnected = true;
+        if (clientSocket) clientSocket.emit('status', { raspberryStatus: raspberryConnected});
     });
 
 
     // Quand un client se connecte, on le note dans la console
     io.sockets.on('connection', function (socket) {
-
+        clientSocket = socket;
         console.log('Un client est connecté !');
         socket.emit('connection', {
                                     message: 'Vous êtes bien connecté !',
                                     raspberryStatus: raspberryConnected
-                                  })
+                                  });
+
+        socket.emit('status', { raspberryStatus: raspberryConnected});
 
 
         // Quand le serveur reçoit un signal de type "movement" du client
         socket.on('movement', function (message) {
             console.log('Server movement message :' + message);
-
             nsp.emit('movement', message);
         });
     });
