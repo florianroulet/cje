@@ -14,11 +14,11 @@
     });
 
     var raspberryConnected = false;
-    var clientSocket;
 
     var nsp = io.of('/raspi');
     var client = io.of('/client');
 
+    // gestion du robot
     nsp.on('connection', function(socket){
         console.log('raspberry connected');
         raspberryConnected = true;
@@ -31,13 +31,7 @@
         });
     });
 
-    nsp.on('disconnect', function() {
-        console.log('raspberry disconnected');
-        raspberryConnected = false;
-        client.emit('status', { raspberryStatus: raspberryConnected});
-    });
-
-    // Quand un client se connecte, on le note dans la console
+    // gestion des client web
     client.on('connection', function (socket) {
 
         console.log('Un client est connecté !');
@@ -56,7 +50,7 @@
         });
     });
 
-    server.listen(8080, function () {
+    server.listen(9090, function () {
         console.log('Server listenning on port 8080');
     });
 }());
